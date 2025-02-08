@@ -11,29 +11,14 @@ const App = () => {
   useEffect(() => {
     const storedResults = JSON.parse(localStorage.getItem("results")) || [];
     setResults(storedResults);
-
-    // Update countdown every minute
-    const interval = setInterval(() => {
-      setResults((prevResults) => {
-        const updatedResults = prevResults.map((result) => ({
-          ...result,
-          countdown: calculateCountdown(new Date(result.ninetiethDay)),
-        }));
-        localStorage.setItem("results", JSON.stringify(updatedResults));
-        return updatedResults;
-      });
-    }, 60000);
-
-    return () => clearInterval(interval);
   }, []);
 
   const handleCalculate = (name, startDate) => {
     const startDay = new Date(startDate);
     const ninetiethDay = new Date(startDate);
-    ninetiethDay.setDate(startDay.getDate() + 89); // Adding 89 because start day counts as day 1
+    ninetiethDay.setDate(startDay.getDate() + 89);
 
     const result = {
-      profilePicture: "https://via.placeholder.com/50",
       name,
       startDay: startDay.toLocaleDateString(),
       ninetiethDay: ninetiethDay.toLocaleDateString(),
@@ -81,7 +66,7 @@ const App = () => {
   const calculateCountdown = (ninetiethDay) => {
     const now = new Date();
     const endDate = new Date(ninetiethDay);
-    endDate.setHours(23, 59, 59, 999); // Set to end of the 90th day
+    endDate.setHours(23, 59, 59, 999);
 
     const timeDiff = endDate - now;
     const daysDiff = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));

@@ -45,15 +45,6 @@ const ResultsTable = ({ results, onEdit, onDelete }) => {
       return 0;
     });
 
-  const getProgressPercentage = (startDay, ninetiethDay) => {
-    const start = new Date(startDay);
-    const end = new Date(ninetiethDay);
-    const now = new Date();
-    const total = end - start;
-    const elapsed = now - start;
-    return Math.min(100, Math.max(0, (elapsed / total) * 100));
-  };
-
   const getRowColor = (countdown) => {
     if (countdown === "Expired") return "bg-green-100";
     const days = parseInt(countdown);
@@ -107,12 +98,10 @@ const ResultsTable = ({ results, onEdit, onDelete }) => {
         <table className="min-w-full bg-white border border-gray-200">
           <thead>
             <tr className="bg-main-color text-white">
-              <th className="py-2 px-4 border-b">Profile Picture</th>
               <SortHeader field="name">Name</SortHeader>
               <SortHeader field="startDay">Start Day</SortHeader>
               <SortHeader field="ninetiethDay">90th Day</SortHeader>
               <SortHeader field="countdown">Countdown</SortHeader>
-              <th className="py-2 px-4 border-b">Progress</th>
               <th className="py-2 px-4 border-b">Actions</th>
             </tr>
           </thead>
@@ -122,13 +111,6 @@ const ResultsTable = ({ results, onEdit, onDelete }) => {
                 key={index}
                 className={`hover:bg-gray-50 ${getRowColor(result.countdown)}`}
               >
-                <td className="py-2 px-4 border-b text-center">
-                  <img
-                    src={result.profilePicture}
-                    alt="Profile"
-                    className="w-10 h-10 rounded-full mx-auto"
-                  />
-                </td>
                 <td className="py-2 px-4 border-b text-center">
                   {result.name}
                 </td>
@@ -140,19 +122,6 @@ const ResultsTable = ({ results, onEdit, onDelete }) => {
                 </td>
                 <td className="py-2 px-4 border-b text-center">
                   {result.countdown}
-                </td>
-                <td className="py-2 px-4 border-b">
-                  <div className="w-full bg-gray-200 rounded-full h-2.5">
-                    <div
-                      className="bg-orange-500 h-2.5 rounded-full"
-                      style={{
-                        width: `${getProgressPercentage(
-                          result.startDay,
-                          result.ninetiethDay
-                        )}%`,
-                      }}
-                    ></div>
-                  </div>
                 </td>
                 <td className="py-2 px-4 border-b text-center">
                   <button
