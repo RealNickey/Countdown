@@ -5,7 +5,7 @@ const ResultsTable = ({ results }) => {
     <div className="overflow-x-auto">
       <table className="min-w-full bg-white border border-gray-200">
         <thead>
-          <tr className="bg-gray-100">
+          <tr className="bg-main-color text-white">
             <th className="py-2 px-4 border-b">Profile Picture</th>
             <th className="py-2 px-4 border-b">Name</th>
             <th className="py-2 px-4 border-b">Start Day</th>

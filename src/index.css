@@ -9,3 +9,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+.bg-main-color {
+  background-color: #ff5722; /* Example main color */
+}
