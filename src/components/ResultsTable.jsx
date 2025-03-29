@@ -45,11 +45,16 @@ const ResultsTable = ({ results, onEdit, onDelete }) => {
       return 0;
     });
 
-  const getRowColor = (countdown) => {
-    if (countdown === "Expired") return "bg-green-100";
-    const days = parseInt(countdown);
-    if (days <= 15) return "bg-yellow-100";
-    return "bg-red-50";
+  const getRowColor = (countdown, index) => {
+    // Only apply color to the first entry (newest)
+    if (index === 0) {
+      if (countdown === "Expired") return "bg-green-100";
+      const days = parseInt(countdown);
+      if (days <= 15) return "bg-yellow-100";
+      return "bg-red-50";
+    }
+    // All other entries get white background
+    return "bg-white";
   };
 
   const SortHeader = ({ field, children }) => (
@@ -109,7 +114,7 @@ const ResultsTable = ({ results, onEdit, onDelete }) => {
             {sortedAndFilteredResults.map((result, index) => (
               <tr
                 key={index}
-                className={`hover:bg-gray-50 ${getRowColor(result.countdown)}`}
+                className={`hover:bg-gray-50 ${getRowColor(result.countdown, index)}`}
               >
                 <td className="py-2 px-4 border-b text-center">
                   {result.name}
