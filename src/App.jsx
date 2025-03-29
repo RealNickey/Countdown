@@ -25,7 +25,7 @@ const App = () => {
       countdown: calculateCountdown(ninetiethDay),
     };
 
-    const updatedResults = [...results, result];
+    const updatedResults = [result, ...results]; // Add new entry to the top
     setResults(updatedResults);
     localStorage.setItem("results", JSON.stringify(updatedResults));
   };

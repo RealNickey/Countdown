@@ -7,6 +7,9 @@ const UserInput = ({ onCalculate }) => {
   const handleCalculate = () => {
     if (name && startDate) {
       onCalculate(name, startDate);
+      // Reset input fields after submission
+      setName("");
+      setStartDate("");
     }
   };
 
