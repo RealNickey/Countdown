@@ -114,7 +114,10 @@ const ResultsTable = ({ results, onEdit, onDelete }) => {
             {sortedAndFilteredResults.map((result, index) => (
               <tr
                 key={index}
-                className={`hover:bg-gray-50 ${getRowColor(result.countdown, index)}`}
+                className={`hover:bg-gray-50 ${getRowColor(
+                  result.countdown,
+                  index
+                )}`}
               >
                 <td className="py-2 px-4 border-b text-center">
                   {result.name}
